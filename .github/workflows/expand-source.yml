@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - source-tree
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   expand:
-    if: ${{ !contains(github.event.head_commit.message || '', '[expanded-source]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -50,9 +48,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "Source tree is already expanded."
-            exit 0
-          fi
           git commit -m "Expand Alpha 5 into ordinary source files [expanded-source]"
           git push origin HEAD:source-tree
