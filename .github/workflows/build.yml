@@ -18,15 +18,15 @@ permissions:
 
 jobs:
   expand-source:
-    if: github.event_name == 'pull_request_target' && github.event.pull_request.head.ref == 'source-tree'
+    if: github.event_name == 'pull_request_target' && github.event.pull_request.head.ref == 'expand-trigger'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
-      - name: Check out source-tree
+      - name: Check out expansion branch
         uses: actions/checkout@v4
         with:
-          ref: source-tree
+          ref: expand-trigger
           fetch-depth: 0
 
       - name: Reconstruct and verify Alpha 5 source
@@ -48,7 +48,6 @@ jobs:
             --exclude='run/' \
             /tmp/civicnations-expanded/CivicNations-neoforge-source/ ./
           rm -rf bootstrap
-          rm -f .github/workflows/expand-source.yml
 
       - name: Commit expanded source tree
         shell: bash
@@ -58,7 +57,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Expand Alpha 5 into ordinary source files [expanded-source]"
-          git push origin HEAD:source-tree
+          git push origin HEAD:expand-trigger
 
   build:
     if: github.event_name != 'pull_request_target'
