@@ -41,6 +41,7 @@ jobs:
             --exclude='.git/' \
             --exclude='build/' \
             --exclude='run/' \
+            --exclude='.github/workflows/build.yml' \
             /tmp/civicnations-expanded/CivicNations-neoforge-source/ ./
           rm -rf bootstrap
 
