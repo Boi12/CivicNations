@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "civicnations:coin_mint",
+    "civicnations:coin_press"
+  ]
+}

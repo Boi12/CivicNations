@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,half=lower": {
+      "model": "civicnations:block/coin_press_lower"
+    },
+    "facing=north,half=upper": {
+      "model": "civicnations:block/coin_press_upper"
+    },
+    "facing=east,half=lower": {
+      "model": "civicnations:block/coin_press_lower",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,half=upper": {
+      "model": "civicnations:block/coin_press_upper",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=lower": {
+      "model": "civicnations:block/coin_press_lower",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,half=upper": {
+      "model": "civicnations:block/coin_press_upper",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=lower": {
+      "model": "civicnations:block/coin_press_lower",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,half=upper": {
+      "model": "civicnations:block/coin_press_upper",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "RAR",
+    "IPI"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "C": { "item": "minecraft:copper_block" },
+    "R": { "item": "minecraft:redstone" },
+    "A": { "item": "minecraft:anvil" },
+    "P": { "item": "minecraft:piston" }
+  },
+  "result": {
+    "item": "civicnations:coin_mint",
+    "count": 1
+  }
+}
