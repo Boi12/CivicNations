@@ -9,7 +9,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.Optional;
 
 public final class ModNetwork {
-    private static final String PROTOCOL = "8";
+    private static final String PROTOCOL = "9";
     private static int packetId = 0;
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -52,6 +52,14 @@ public final class ModNetwork {
                 PressCoinsPacket::encode,
                 PressCoinsPacket::decode,
                 PressCoinsPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
+        CHANNEL.registerMessage(
+                packetId++,
+                PurseActionPacket.class,
+                PurseActionPacket::encode,
+                PurseActionPacket::decode,
+                PurseActionPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_SERVER)
         );
     }
