@@ -16,18 +16,23 @@ public final class CurrencyItems {
 
     public static ItemStack create(NationRecord nation, int denomination, int count) {
         NationCurrency currency = nation.currency().orElseThrow();
+        return create(currency.currencyId(), nation.nationId(), nation.name(), currency.name(),
+                currency.code(), denomination, count);
+    }
+
+    /** Recreates already-issued currency without requiring the issuing nation to still exist. */
+    public static ItemStack create(UUID currencyId, UUID nationId, String nationName,
+                                   String currencyName, String code, int denomination, int count) {
         ItemStack stack = new ItemStack(ModItems.NATION_CURRENCY.get(), Math.max(1, count));
         CompoundTag tag = new CompoundTag();
-        tag.putUUID("CurrencyId", currency.currencyId());
-        tag.putUUID("NationId", nation.nationId());
-        tag.putString("NationName", nation.name());
-        tag.putString("CurrencyName", currency.name());
-        tag.putString("Code", currency.code());
-        // Retained for old saves/items; new displays intentionally do not use symbols.
-        tag.putString("Symbol", currency.symbol());
+        tag.putUUID("CurrencyId", currencyId);
+        tag.putUUID("NationId", nationId);
+        tag.putString("NationName", nationName);
+        tag.putString("CurrencyName", currencyName);
+        tag.putString("Code", code);
+        tag.putString("Symbol", "");
         tag.putInt("Denomination", denomination);
         stack.getOrCreateTag().put(ROOT, tag);
-        // Vanilla model overrides use this to select the matching stamped coin texture.
         stack.getOrCreateTag().putInt("CustomModelData", denomination);
         return stack;
     }
@@ -48,6 +53,15 @@ public final class CurrencyItems {
 
     public static UUID currencyId(ItemStack stack) {
         return currencyIdOptional(stack).orElse(new UUID(0L, 0L));
+    }
+
+    public static Optional<UUID> nationIdOptional(ItemStack stack) {
+        CompoundTag tag = data(stack);
+        return tag.hasUUID("NationId") ? Optional.of(tag.getUUID("NationId")) : Optional.empty();
+    }
+
+    public static UUID nationId(ItemStack stack) {
+        return nationIdOptional(stack).orElse(new UUID(0L, 0L));
     }
 
     public static boolean matches(ItemStack stack, UUID currencyId) {
