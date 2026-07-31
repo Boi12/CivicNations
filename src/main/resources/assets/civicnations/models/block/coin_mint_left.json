@@ -1,0 +1,51 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "front": "civicnations:block/coin_mint_left_front",
+    "back": "civicnations:block/coin_mint_left_back",
+    "top": "civicnations:block/coin_mint_left_top",
+    "side": "civicnations:block/coin_mint_side",
+    "bottom": "civicnations:block/coin_mint_bottom",
+    "particle": "civicnations:block/coin_mint_left_front"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bottom",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#front",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#back",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

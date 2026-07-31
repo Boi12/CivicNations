@@ -1,0 +1,167 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "frame": "civicnations:block/coin_press_frame",
+    "base": "civicnations:block/coin_press_base",
+    "work": "civicnations:block/coin_press_worktable",
+    "die": "civicnations:block/coin_press_die",
+    "ram": "civicnations:block/coin_press_ram",
+    "particle": "civicnations:block/coin_press_frame"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        5,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#base"
+        },
+        "up": {
+          "texture": "#base"
+        },
+        "north": {
+          "texture": "#base"
+        },
+        "south": {
+          "texture": "#base"
+        },
+        "west": {
+          "texture": "#base"
+        },
+        "east": {
+          "texture": "#base"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        5,
+        2
+      ],
+      "to": [
+        4,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#frame"
+        },
+        "north": {
+          "texture": "#frame"
+        },
+        "south": {
+          "texture": "#frame"
+        },
+        "west": {
+          "texture": "#frame"
+        },
+        "east": {
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "from": [
+        12,
+        5,
+        2
+      ],
+      "to": [
+        15,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#frame"
+        },
+        "north": {
+          "texture": "#frame"
+        },
+        "south": {
+          "texture": "#frame"
+        },
+        "west": {
+          "texture": "#frame"
+        },
+        "east": {
+          "texture": "#frame"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        5,
+        3
+      ],
+      "to": [
+        12,
+        8,
+        13
+      ],
+      "faces": {
+        "down": {
+          "texture": "#work"
+        },
+        "up": {
+          "texture": "#work"
+        },
+        "north": {
+          "texture": "#work"
+        },
+        "south": {
+          "texture": "#work"
+        },
+        "west": {
+          "texture": "#work"
+        },
+        "east": {
+          "texture": "#work"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        8,
+        4
+      ],
+      "to": [
+        11,
+        10,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#die"
+        },
+        "up": {
+          "texture": "#die"
+        },
+        "north": {
+          "texture": "#die"
+        },
+        "south": {
+          "texture": "#die"
+        },
+        "west": {
+          "texture": "#die"
+        },
+        "east": {
+          "texture": "#die"
+        }
+      }
+    }
+  ]
+}

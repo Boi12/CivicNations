@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "facing=north,part=left": {
+      "model": "civicnations:block/coin_mint_left"
+    },
+    "facing=north,part=right": {
+      "model": "civicnations:block/coin_mint_right"
+    },
+    "facing=east,part=left": {
+      "model": "civicnations:block/coin_mint_left",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,part=right": {
+      "model": "civicnations:block/coin_mint_right",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,part=left": {
+      "model": "civicnations:block/coin_mint_left",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,part=right": {
+      "model": "civicnations:block/coin_mint_right",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,part=left": {
+      "model": "civicnations:block/coin_mint_left",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,part=right": {
+      "model": "civicnations:block/coin_mint_right",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

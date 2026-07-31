@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "civicnations:item/nation_currency_copper"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "civicnations:item/nation_currency_copper" },
+    { "predicate": { "custom_model_data": 5 }, "model": "civicnations:item/nation_currency_iron" },
+    { "predicate": { "custom_model_data": 10 }, "model": "civicnations:item/nation_currency_silver" },
+    { "predicate": { "custom_model_data": 25 }, "model": "civicnations:item/nation_currency_gold" },
+    { "predicate": { "custom_model_data": 50 }, "model": "civicnations:item/nation_currency_diamond_plated_gold" },
+    { "predicate": { "custom_model_data": 100 }, "model": "civicnations:item/nation_currency_hexagonal_diamond_plated_gold" }
+  ]
+}

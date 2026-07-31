@@ -1,0 +1,128 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    // NeoForge's 1.20.1 Gradle plugin retained the ForgeGradle-style DSL.
+    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = 'civicnations-neoforge-1.20.1'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {}
+        server {
+            args '--nogui'
+        }
+    }
+}
+
+repositories {
+    maven { url = 'https://maven.neoforged.net/releases' }
+    maven { url = 'https://www.cursemaven.com' }
+}
+
+dependencies {
+    // Exact loader used by Austin's CurseForge profile.
+    minecraft "net.neoforged:forge:${minecraft_version}-${neoforge_version}"
+
+    implementation fg.deobf('curse.maven:architectury-api-419699:5137938')
+    implementation fg.deobf('curse.maven:ftb-library-forge-404465:8226927')
+    implementation fg.deobf('curse.maven:ftb-teams-forge-404468:7499810')
+    implementation fg.deobf('curse.maven:ftb-chunks-forge-314906:8216874')
+}
+
+def civicBinaryResourcesBase64 = layout.projectDirectory.file('assets/civicnations-binary-assets.zip.b64')
+def civicBinaryResourcesZip = layout.buildDirectory.file('generated/civicnations-binary-assets.zip')
+
+tasks.register('decodeCivicBinaryResources') {
+    inputs.file(civicBinaryResourcesBase64)
+    outputs.file(civicBinaryResourcesZip)
+    doLast {
+        def outputFile = civicBinaryResourcesZip.get().asFile
+        outputFile.parentFile.mkdirs()
+        outputFile.bytes = Base64.decoder.decode(civicBinaryResourcesBase64.asFile.text.trim())
+    }
+}
+
+tasks.register('unpackCivicBinaryResources', Sync) {
+    dependsOn tasks.named('decodeCivicBinaryResources')
+    from { zipTree(civicBinaryResourcesZip.get().asFile) }
+    into(layout.buildDirectory.dir('generated/civicnationsBinaryResources'))
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    dependsOn tasks.named('unpackCivicBinaryResources')
+    from(layout.buildDirectory.dir('generated/civicnationsBinaryResources'))
+    var replaceProperties = [
+            minecraft_version          : minecraft_version,
+            minecraft_version_range    : minecraft_version_range,
+            neoforge_version           : neoforge_version,
+            neoforge_version_range     : neoforge_version_range,
+            loader_version_range       : loader_version_range,
+            mod_id                     : mod_id,
+            mod_name                   : mod_name,
+            mod_license                : mod_license,
+            mod_version                : mod_version,
+            mod_authors                : mod_authors,
+            mod_description            : mod_description
+    ]
+
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    archiveFileName = 'civicnations-neoforge-1.20.1.jar'
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'CivicNations-Platform'    : 'NeoForge-1.20.1-47.x'
+        ])
+    }
+    finalizedBy 'reobfJar'
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

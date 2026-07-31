@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IPI",
+    "SAS"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "P": { "item": "minecraft:piston" },
+    "S": { "item": "minecraft:smooth_stone" },
+    "A": { "item": "minecraft:anvil" }
+  },
+  "result": {
+    "item": "civicnations:coin_press",
+    "count": 1
+  }
+}
