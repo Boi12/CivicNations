@@ -2,11 +2,6 @@ name: Build Civic Nations
 
 on:
   pull_request:
-  pull_request_target:
-    types:
-      - opened
-      - synchronize
-      - reopened
   push:
     branches:
       - main
@@ -18,7 +13,7 @@ permissions:
 
 jobs:
   expand-source:
-    if: github.event_name == 'pull_request_target' && github.event.pull_request.head.ref == 'expand-trigger'
+    if: github.event_name == 'pull_request' && github.head_ref == 'expand-trigger'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -60,7 +55,7 @@ jobs:
           git push origin HEAD:expand-trigger
 
   build:
-    if: github.event_name != 'pull_request_target'
+    if: github.event_name != 'pull_request' || github.head_ref != 'expand-trigger'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
