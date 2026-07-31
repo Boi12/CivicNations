@@ -21,5 +21,7 @@
   "item.civicnations.blank_gold_coin": "Blank Gold Coin",
   "item.civicnations.blank_diamond_plated_gold_coin": "Blank Diamond-Plated Gold Coin",
   "item.civicnations.blank_hexagonal_diamond_plated_gold_coin": "Blank Hexagonal Diamond-Plated Gold Coin",
-  "menu.civicnations.coin_press": "Coin Press"
+  "menu.civicnations.coin_press": "Coin Press",
+  "item.civicnations.coin_purse": "Coin Purse",
+  "menu.civicnations.coin_purse": "Coin Purse"
 }

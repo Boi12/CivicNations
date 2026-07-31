@@ -1,6 +1,7 @@
 package com.austin.civicnations.registry;
 
 import com.austin.civicnations.CivicNations;
+import com.austin.civicnations.item.CoinPurseItem;
 import com.austin.civicnations.item.NationCurrencyItem;
 import com.austin.civicnations.item.NationLedgerItem;
 import net.minecraft.world.item.BlockItem;
@@ -24,6 +25,11 @@ public final class ModItems {
     public static final RegistryObject<Item> NATION_CURRENCY = ITEMS.register(
             "nation_currency",
             () -> new NationCurrencyItem(new Item.Properties().stacksTo(64))
+    );
+
+    public static final RegistryObject<Item> COIN_PURSE = ITEMS.register(
+            "coin_purse",
+            () -> new CoinPurseItem(new Item.Properties().stacksTo(1))
     );
 
     public static final RegistryObject<Item> COIN_MINT = ITEMS.register(
@@ -67,6 +73,7 @@ public final class ModItems {
     public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey().equals(CreativeModeTabs.TOOLS_AND_UTILITIES)) {
             event.accept(NATION_LEDGER.get());
+            event.accept(COIN_PURSE.get());
             event.accept(COIN_PRESS.get());
             event.accept(COIN_MINT.get());
             event.accept(BLANK_COPPER_COIN.get());
