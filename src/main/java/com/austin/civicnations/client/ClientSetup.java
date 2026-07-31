@@ -3,6 +3,7 @@ package com.austin.civicnations.client;
 import com.austin.civicnations.CivicNations;
 import com.austin.civicnations.client.screen.CoinMintScreen;
 import com.austin.civicnations.client.screen.CoinPressScreen;
+import com.austin.civicnations.client.screen.CoinPurseScreen;
 import com.austin.civicnations.client.screen.NationCreationScreen;
 import com.austin.civicnations.client.screen.NationOverviewScreen;
 import com.austin.civicnations.registry.ModMenus;
@@ -23,6 +24,7 @@ public final class ClientSetup {
             MenuScreens.register(ModMenus.NATION_OVERVIEW.get(), NationOverviewScreen::new);
             MenuScreens.register(ModMenus.COIN_MINT.get(), CoinMintScreen::new);
             MenuScreens.register(ModMenus.COIN_PRESS.get(), CoinPressScreen::new);
+            MenuScreens.register(ModMenus.COIN_PURSE.get(), CoinPurseScreen::new);
             CivicNations.LOGGER.info("Registered Civic Nations screens");
         });
     }
