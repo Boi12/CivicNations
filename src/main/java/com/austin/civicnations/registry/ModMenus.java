@@ -3,6 +3,7 @@ package com.austin.civicnations.registry;
 import com.austin.civicnations.CivicNations;
 import com.austin.civicnations.menu.CoinMintMenu;
 import com.austin.civicnations.menu.CoinPressMenu;
+import com.austin.civicnations.menu.CoinPurseMenu;
 import com.austin.civicnations.menu.NationCreationMenu;
 import com.austin.civicnations.menu.NationOverviewMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -34,6 +35,11 @@ public final class ModMenus {
     public static final RegistryObject<MenuType<CoinPressMenu>> COIN_PRESS = MENUS.register(
             "coin_press",
             () -> IForgeMenuType.create(CoinPressMenu::fromNetwork)
+    );
+
+    public static final RegistryObject<MenuType<CoinPurseMenu>> COIN_PURSE = MENUS.register(
+            "coin_purse",
+            () -> IForgeMenuType.create(CoinPurseMenu::fromNetwork)
     );
 
     private ModMenus() {}
